@@ -1,0 +1,55 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: val-inspec-ul
+spec:
+  successfulJobsHistoryLimit: 3 
+  failedJobsHistoryLimit: 1 
+  schedule: "* 0 * * 0"  
+  jobTemplate:             
+    spec:
+      template:
+        metadata:
+          labels:          
+            parent: "kube-inspec"
+        spec:
+          serviceAccountName: kube-inspec
+          containers:
+          - name: kube-inspec
+            image: kube-inspec
+            command: ["python3",  "/share/inspec_audit.py"]
+            resources:
+              requests:
+                memory: "512Mi"
+                cpu: "250m"
+              limits:
+                memory: "1024Mi"
+                cpu: "500m"
+            env:
+            - name: ES_URL
+              value: "thatcoolurl.com"
+            - name: ES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: es
+                  key: username
+            - name: ES_PW
+              valueFrom:
+                secretKeyRef:
+                  name: es
+                  key: password
+            - name: INSPEC_GIT
+              value: "thatcoolurl.com"
+            - name: FREEIPA_URL
+              value: "thatcoolurl.com"
+            - name: INSPEC_USER
+              valueFrom:
+                secretKeyRef:
+                  name: ipa
+                  key: username
+            - name: INSPEC_PW
+              valueFrom:
+                secretKeyRef:
+                  name: ipa
+                  key: password
+          restartPolicy: OnFailure 
