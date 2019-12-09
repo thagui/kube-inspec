@@ -14,6 +14,10 @@ Inspec as a Cronjob in Kubernetes
 - For each host, scanning them with Inspec using the Git repo passed as an environment variable
 - For each host, posting the result to an ElasticSearch 
 
+## How can I use this
+
+Upcoming !
+
 ## ToDo
 - Kibana Dashboard
 - Variable Inspec usage
