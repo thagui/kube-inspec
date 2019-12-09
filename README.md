@@ -4,8 +4,8 @@ Inspec as a Cronjob in Kubernetes
 ## What are we trying to solve with that
 
 - Having hosts being managed by a FreeIPA server (https://www.freeipa.org/)
-- Wanting so audit them with Inspec (https://www.inspec.io/)
-- Seding the result to an ElasticSearch (https://www.elastic.co/)
+- Wanting to audit them with Inspec (https://www.inspec.io/)
+- Sending the results to an ElasticSearch (https://www.elastic.co/)
 
 ## How do we do this
 
