@@ -1,7 +1,7 @@
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-  name: val-inspec-ul
+  name: kube-inspec
 spec:
   successfulJobsHistoryLimit: 3 
   failedJobsHistoryLimit: 1 
